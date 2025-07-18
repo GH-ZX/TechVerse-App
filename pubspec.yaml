@@ -1,0 +1,56 @@
+name: techverse
+description: "A new Flutter project for TechVerse."
+publish_to: 'none' # Remove this line if you wish to publish to pub.dev
+
+version: 1.0.0+1
+
+environment:
+  sdk: ^3.7.2
+
+dependencies:
+  flutter:
+    sdk: flutter
+  flutter_localizations:
+    sdk: flutter
+  cupertino_icons: ^1.0.8
+  provider: ^6.1.2
+  shared_preferences: ^2.5.2
+  google_fonts: ^6.2.1
+  carousel_slider: ^5.0.0
+  badges: ^3.1.2
+  flutter_svg: ^2.0.17
+  flutter_rating_bar: ^4.0.1
+  cached_network_image: ^3.4.1
+  intl: ^0.20.2
+  shimmer: ^3.0.0
+  http: ^1.1.2
+  url_launcher: ^6.2.5
+  path_provider: ^2.1.1
+  firebase_core: ^3.15.1
+  firebase_auth: ^5.6.2
+  google_sign_in: ^7.1.1
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^5.0.0
+
+flutter:
+
+  uses-material-design: true
+
+  assets:
+    - assets/images/
+    - assets/images/laptops/
+    - assets/images/laptops/acer/
+    - assets/images/laptops/alienware/
+    - assets/images/laptops/apple/
+    - assets/images/laptops/asus/
+    - assets/images/laptops/dell/
+    - assets/images/laptops/hp/
+    - assets/images/laptops/lenovo/
+    - assets/images/laptops/microsoft/
+    - assets/images/laptops/msi/
+    - assets/images/laptops/samsung/
+    - assets/translations/
+    - assets/images/icon.png

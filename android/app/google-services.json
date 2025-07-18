@@ -1,0 +1,68 @@
+{
+  "project_info": {
+    "project_number": "520998567226",
+    "project_id": "techverse-d83f7",
+    "storage_bucket": "techverse-d83f7.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:520998567226:android:00f7c8a546434ac727a403",
+        "android_client_info": {
+          "package_name": "com.example.pcland_store"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "520998567226-fucl2c86ukp5mk7ppjdqt1g3fv7r09qp.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAlN6s5TqRffvJjh8An5n1bP-vMCExELwU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "520998567226-fucl2c86ukp5mk7ppjdqt1g3fv7r09qp.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:520998567226:android:7304fb9132b7439d27a403",
+        "android_client_info": {
+          "package_name": "com.gh.techverse"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "520998567226-fucl2c86ukp5mk7ppjdqt1g3fv7r09qp.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAlN6s5TqRffvJjh8An5n1bP-vMCExELwU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "520998567226-fucl2c86ukp5mk7ppjdqt1g3fv7r09qp.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
