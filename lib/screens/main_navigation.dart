@@ -5,7 +5,7 @@ import 'package:techverse/providers/cart_provider.dart';
 import 'package:techverse/screens/cart_screen.dart';
 import 'package:techverse/screens/favorites_screen.dart';
 import 'package:techverse/screens/home_screen.dart';
-import 'package:techverse/screens/search_screen.dart';
+import 'package:techverse/screens/category_screen.dart';
 import 'package:techverse/screens/settings_screen.dart';
 import 'package:techverse/services/app_localizations.dart';
 
@@ -35,7 +35,8 @@ class _MainNavigationState extends State<MainNavigation> {
   // A list of all the screens in the bottom navigation.
   final List<Screen> _screens = [
     const Screen(widget: HomeScreen(), title: 'home', icon: Icons.home),
-    const Screen(widget: SearchScreen(), title: 'search', icon: Icons.search),
+    const Screen(
+        widget: CategoryScreen(), title: 'categories', icon: Icons.category),
     const Screen(
         widget: CartScreen(), title: 'cart', icon: Icons.shopping_cart),
     const Screen(

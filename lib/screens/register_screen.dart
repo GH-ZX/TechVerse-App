@@ -41,10 +41,13 @@ class _RegisterScreenState extends State<RegisterScreen> {
     });
 
     try {
-      await FirebaseAuth.instance.createUserWithEmailAndPassword(
+      UserCredential userCredential =
+          await FirebaseAuth.instance.createUserWithEmailAndPassword(
         email: _emailController.text,
         password: _passwordController.text,
       );
+
+      await userCredential.user!.updateDisplayName(_nameController.text);
 
       if (mounted) {
         ScaffoldMessenger.of(context).showSnackBar(
@@ -152,12 +155,6 @@ class _RegisterScreenState extends State<RegisterScreen> {
                     ),
                   ),
                   keyboardType: TextInputType.phone,
-                  validator: (value) {
-                    if (value == null || value.isEmpty) {
-                      return localizations.translate('required_field');
-                    }
-                    return null;
-                  },
                 ),
                 const SizedBox(height: 20),
                 // Password Field

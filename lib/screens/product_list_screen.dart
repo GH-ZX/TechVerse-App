@@ -67,6 +67,10 @@ class ProductListScreen extends StatelessWidget {
       return Future.value(productProvider.getProductsByBrand(brand!));
     }
     if (category != null) {
+      if (category == 'Accessories') {
+        // Return all products that are considered accessories (e.g., Headphones, Mice)
+        return Future.value(productProvider.items.where((p) => p.category == 'Headphones' || p.category == 'Mice').toList());
+      }
       return Future.value(productProvider.getProductsByCategory(category!));
     }
     return Future.value([]);

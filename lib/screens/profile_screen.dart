@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:techverse/services/app_localizations.dart';
@@ -21,12 +22,12 @@ class _ProfileScreenState extends State<ProfileScreen> {
   void initState() {
     super.initState();
     final userProvider = Provider.of<UserProvider>(context, listen: false);
-    final user = userProvider.user;
+    final firebaseUser = FirebaseAuth.instance.currentUser;
 
-    _nameController = TextEditingController(text: user?.name ?? '');
-    _emailController = TextEditingController(text: user?.email ?? '');
-    _phoneController = TextEditingController(text: user?.phoneNumber ?? '');
-    _addressController = TextEditingController(text: user?.address ?? '');
+    _nameController = TextEditingController(text: firebaseUser?.displayName ?? '');
+    _emailController = TextEditingController(text: firebaseUser?.email ?? '');
+    _phoneController = TextEditingController(text: firebaseUser?.phoneNumber ?? '');
+    _addressController = TextEditingController(text: userProvider.user?.address ?? '');
   }
 
   @override
@@ -44,31 +45,70 @@ class _ProfileScreenState extends State<ProfileScreen> {
     });
   }
 
-  void _saveProfile() {
-    // final userProvider = Provider.of<UserProvider>(context, listen: false);
+  Future<void> _saveProfile() async {
+    final localizations = AppLocalizations.of(context);
+    final userProvider = Provider.of<UserProvider>(context, listen: false);
+    final user = FirebaseAuth.instance.currentUser;
 
-    // // Update user information
-    // userProvider.updateUserProfile(
-    //   userProvider.user!.copyWith(
-    //     name: _nameController.text,
-    //     email: _emailController.text,
-    //     phoneNumber: _phoneController.text,
-    //     address: _addressController.text,
-    //   ),
-    // );
+    if (user == null) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(
+          content: Text(localizations.translate('login_required')),
+          backgroundColor: Colors.red,
+        ),
+      );
+      return;
+    }
 
-    // setState(() {
-    //   _isEditing = false;
-    // });
+    try {
+      if (user.displayName != _nameController.text) {
+        await user.updateDisplayName(_nameController.text);
+      }
+      if (user.email != _emailController.text) {
+        await user.updateEmail(_emailController.text);
+      }
+      // Firebase does not have a direct method to update phone number via updatePhoneNumber.
+      // It usually involves re-authentication or specific phone authentication flows.
+      // For simplicity, we'll update the local user provider's phone number.
+      // If a full Firebase phone number update is required, it would need a more complex implementation.
 
-    // ScaffoldMessenger.of(context).showSnackBar(
-    //   SnackBar(
-    //     content: Text(
-    //       AppLocalizations.of(context).translate('profile_updated'),
-    //     ),
-    //     backgroundColor: Colors.green,
-    //   ),
-    // );
+      // Update user information in the local provider
+      userProvider.updateUserProfile(
+        userProvider.user!.copyWith(
+          name: _nameController.text,
+          email: _emailController.text,
+          phoneNumber: _phoneController.text,
+          address: _addressController.text,
+        ),
+      );
+
+      setState(() {
+        _isEditing = false;
+      });
+
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(
+          content: Text(
+            localizations.translate('profile_updated'),
+          ),
+          backgroundColor: Colors.green,
+        ),
+      );
+    } on FirebaseAuthException catch (e) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(
+          content: Text(e.message ?? localizations.translate('update_failed')),
+          backgroundColor: Colors.red,
+        ),
+      );
+    } catch (error) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(
+          content: Text(error.toString()),
+          backgroundColor: Colors.red,
+        ),
+      );
+    }
   }
 
   @override
@@ -121,16 +161,21 @@ class _ProfileScreenState extends State<ProfileScreen> {
             CircleAvatar(
               radius: 50,
               backgroundColor: Theme.of(context).colorScheme.primary,
-              child: Text(
-                _nameController.text.isNotEmpty
-                    ? _nameController.text.substring(0, 1).toUpperCase()
-                    : 'U',
-                style: const TextStyle(
-                  fontSize: 40,
-                  fontWeight: FontWeight.bold,
-                  color: Colors.white,
-                ),
-              ),
+              backgroundImage: FirebaseAuth.instance.currentUser?.photoURL != null
+                  ? NetworkImage(FirebaseAuth.instance.currentUser!.photoURL!)
+                  : null,
+              child: FirebaseAuth.instance.currentUser?.photoURL == null
+                  ? Text(
+                      _nameController.text.isNotEmpty
+                          ? _nameController.text.substring(0, 1).toUpperCase()
+                          : 'U',
+                      style: const TextStyle(
+                        fontSize: 40,
+                        fontWeight: FontWeight.bold,
+                        color: Colors.white,
+                      ),
+                    )
+                  : null,
             ),
             const SizedBox(height: 24),
             _buildProfileField(

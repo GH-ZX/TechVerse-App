@@ -83,6 +83,7 @@ class UserProvider with ChangeNotifier {
     if (firebaseUser == null) {
       _user = null;
     } else {
+      // Ensure the User object is always up-to-date with Firebase user data
       _user = User.fromFirebaseAuth(firebaseUser);
     }
     notifyListeners();
@@ -111,7 +112,9 @@ class UserProvider with ChangeNotifier {
       );
 
       final userCredential = await _firebaseAuth.signInWithCredential(credential);
-      _user = User.fromFirebaseAuth(userCredential.user!);
+      if (userCredential.user != null) {
+        _user = User.fromFirebaseAuth(userCredential.user!);
+      }
       _isLoading = false;
       notifyListeners();
       return userCredential;
@@ -182,6 +185,11 @@ class UserProvider with ChangeNotifier {
     await _googleSignIn.signOut();
     await _firebaseAuth.signOut();
     _user = null;
+    notifyListeners();
+  }
+
+  void updateUserProfile(User updatedUser) {
+    _user = updatedUser;
     notifyListeners();
   }
 }

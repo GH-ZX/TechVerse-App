@@ -31,41 +31,64 @@ class SettingsScreen extends StatelessWidget {
         children: [
           // User Profile Section
           if (userProvider.isLoggedIn)
-            Card(
-              elevation: 2,
-              shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(12),
-              ),
-              child: Padding(
-                padding: const EdgeInsets.symmetric(vertical: 8.0),
-                child: ListTile(
-                  leading: CircleAvatar(
-                    backgroundColor: Theme.of(context).colorScheme.primary,
-                    radius: 30,
-                    child: const Icon(
-                      Icons.person,
-                      color: Colors.white,
-                      size: 45,
-                    ),
+            InkWell(
+              onTap: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => const ProfileScreen(),
                   ),
-                  title: Text(
-                    userProvider.user!.name ?? '',
-                    style: const TextStyle(
-                      fontWeight: FontWeight.bold,
-                      fontSize: 20,
-                    ),
-                  ),
-                  subtitle: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
+                );
+              },
+              child: Card(
+                elevation: 2,
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(12),
+                ),
+                child: Padding(
+                  padding: const EdgeInsets.all(16.0),
+                  child: Row(
                     children: [
-                      const SizedBox(height: 4),
-                      Text(userProvider.user!.email ?? ''),
-                      const SizedBox(height: 2),
-                      Text(userProvider.user!.phoneNumber ?? ''),
+                      CircleAvatar(
+                        backgroundColor: Theme.of(context).colorScheme.primary,
+                        radius: 30,
+                        backgroundImage: userProvider.user?.profileImage != null
+                            ? NetworkImage(userProvider.user!.profileImage!)
+                            : null,
+                        child: userProvider.user?.profileImage == null
+                            ? const Icon(
+                                Icons.person,
+                                color: Colors.white,
+                                size: 45,
+                              )
+                            : null,
+                      ),
+                      const SizedBox(width: 16),
+                      Expanded(
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text(
+                              userProvider.user!.name ?? '',
+                              style: const TextStyle(
+                                fontWeight: FontWeight.bold,
+                                fontSize: 20,
+                              ),
+                            ),
+                            const SizedBox(height: 4),
+                            Text(
+                              '${userProvider.user!.email ?? ''}${userProvider.user!.phoneNumber != null && userProvider.user!.phoneNumber!.isNotEmpty ? ' • ${userProvider.user!.phoneNumber!}' : ''}',
+                              style: TextStyle(
+                                fontSize: 14,
+                                color: Theme.of(context).colorScheme.onSurface.withOpacity(0.7),
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                      const Icon(Icons.arrow_forward_ios, size: 16),
                     ],
                   ),
-
-                  isThreeLine: true,
                 ),
               ),
             ),
@@ -85,22 +108,23 @@ class SettingsScreen extends StatelessWidget {
               ),
               child: Column(
                 children: [
-                  InkWell(
-                    onTap: () {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          builder: (context) => const ProfileScreen(),
-                        ),
-                      );
-                    },
-                    child: ListTile(
-                      leading: const Icon(Icons.person_outline),
-                      title: Text(localizations.translate('profile')),
-                      trailing: const Icon(Icons.arrow_forward_ios, size: 16),
-                    ),
-                  ),
-                  const Divider(height: 1),
+                  // Removed the duplicate Profile ListTile
+                  // InkWell(
+                  //   onTap: () {
+                  //     Navigator.push(
+                  //       context,
+                  //       MaterialPageRoute(
+                  //         builder: (context) => const ProfileScreen(),
+                  //       ),
+                  //     );
+                  //   },
+                  //   child: ListTile(
+                  //     leading: const Icon(Icons.person_outline),
+                  //     title: Text(localizations.translate('profile')),
+                  //     trailing: const Icon(Icons.arrow_forward_ios, size: 16),
+                  //   ),
+                  // ),
+                  // const Divider(height: 1),
                   InkWell(
                     onTap: () {
                       Navigator.push(

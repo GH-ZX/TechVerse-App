@@ -7,6 +7,7 @@ class Category {
   final String? imageUrl;
   final String? brand;
   final String? category;
+  final bool isSeparator;
 
   Category({
     required this.title,
@@ -15,6 +16,7 @@ class Category {
     this.imageUrl,
     this.brand,
     this.category,
+    this.isSeparator = false,
   });
 }
 
@@ -22,12 +24,6 @@ List<Category> getCategories(BuildContext context) {
   final bool isLightMode = Theme.of(context).brightness == Brightness.light;
 
   return [
-    Category(
-      title: 'All Brands',
-      icon: Icons.laptop_rounded,
-      color: isLightMode ? Colors.grey.shade700 : const Color.fromARGB(255, 199, 193, 193),
-      category: 'Laptop',
-    ),
     Category(
       title: 'Dell',
       icon: Icons.laptop_mac,
@@ -91,5 +87,22 @@ List<Category> getCategories(BuildContext context) {
       imageUrl: 'laptops/samsung/samsung.png',
       brand: 'Samsung',
     ),
-  ];
-}
+    Category(
+      title: 'Accessories',
+      color: Colors.transparent,
+      isSeparator: true,
+    ),
+    Category(
+      title: 'Headphones',
+      icon: Icons.headset,
+      color: isLightMode ? Colors.teal.shade700 : Colors.teal.shade400,
+      category: 'Headphones',
+    ),
+    Category(
+      title: 'Mice',
+      icon: Icons.mouse,
+      color: isLightMode ? Colors.indigo.shade700 : Colors.indigo.shade400,
+      category: 'Mice',
+    ) ];
+    
+    }

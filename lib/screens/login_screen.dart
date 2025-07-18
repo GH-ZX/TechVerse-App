@@ -37,10 +37,7 @@ class _LoginScreenState extends State<LoginScreen>
       ),
     );
 
-    // للاختبار فقط
-    emailController.text = 'ahmad@example.com';
-    passwordController.text = '123';
-
+  
     // إعداد الرسوم المتحركة
     _animationController = AnimationController(
       duration: const Duration(milliseconds: 800),
