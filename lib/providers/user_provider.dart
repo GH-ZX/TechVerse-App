@@ -63,7 +63,12 @@ class UserProvider with ChangeNotifier {
   bool _isLoading = false;
   String? _error;
   final auth.FirebaseAuth _firebaseAuth = auth.FirebaseAuth.instance;
-  final GoogleSignIn _googleSignIn = GoogleSignIn.instance;
+
+  // إنشاء GoogleSignIn بشكل عادي (بدون instance)
+  final GoogleSignIn _googleSignIn = GoogleSignIn(
+    scopes: ['email'],
+    serverClientId: '520998567226-fucl2c86ukp5mk7ppjdqt1g3fv7r09qp.apps.googleusercontent.com',
+  );
 
   User? get user => _user;
   bool get isLoading => _isLoading;
@@ -89,22 +94,29 @@ class UserProvider with ChangeNotifier {
     notifyListeners();
 
     try {
-      final GoogleSignInAccount googleUser = await GoogleSignIn.instance.authenticate();
+      final GoogleSignInAccount? googleUser = await _googleSignIn.signIn();
 
-      final GoogleSignInAuthentication googleAuth =
-          googleUser.authentication;
+      if (googleUser == null) {
+        _error = 'لم يتم اختيار أي حساب Google.';
+        _isLoading = false;
+        notifyListeners();
+        return null;
+      }
+
+      final GoogleSignInAuthentication googleAuth = await googleUser.authentication;
+
       final auth.AuthCredential credential = auth.GoogleAuthProvider.credential(
         idToken: googleAuth.idToken,
+        accessToken: googleAuth.accessToken,
       );
 
-      final userCredential =
-          await _firebaseAuth.signInWithCredential(credential);
+      final userCredential = await _firebaseAuth.signInWithCredential(credential);
       _user = User.fromFirebaseAuth(userCredential.user!);
       _isLoading = false;
       notifyListeners();
       return userCredential;
     } catch (e) {
-      _error = 'An error occurred during Google sign-in: $e';
+      _error = 'حدث خطأ أثناء تسجيل الدخول بـ Google: $e';
       debugPrint('Google Sign-In Error: $e');
       _isLoading = false;
       notifyListeners();
@@ -127,12 +139,39 @@ class UserProvider with ChangeNotifier {
       notifyListeners();
       return true;
     } on auth.FirebaseAuthException catch (e) {
-      _error = 'Login failed: ${e.message}';
+      _error = 'فشل تسجيل الدخول: ${e.message}';
       _isLoading = false;
       notifyListeners();
       return false;
     } catch (e) {
-      _error = 'An unexpected error occurred: $e';
+      _error = 'حدث خطأ غير متوقع: $e';
+      _isLoading = false;
+      notifyListeners();
+      return false;
+    }
+  }
+
+  Future<bool> register(String email, String password) async {
+    _isLoading = true;
+    _error = null;
+    notifyListeners();
+
+    try {
+      final userCredential = await _firebaseAuth.createUserWithEmailAndPassword(
+        email: email,
+        password: password,
+      );
+      _user = User.fromFirebaseAuth(userCredential.user!);
+      _isLoading = false;
+      notifyListeners();
+      return true;
+    } on auth.FirebaseAuthException catch (e) {
+      _error = 'فشل إنشاء الحساب: ${e.message}';
+      _isLoading = false;
+      notifyListeners();
+      return false;
+    } catch (e) {
+      _error = 'حدث خطأ غير متوقع: $e';
       _isLoading = false;
       notifyListeners();
       return false;
