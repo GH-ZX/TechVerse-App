@@ -56,7 +56,7 @@ class _MainNavigationState extends State<MainNavigation> {
     final cartProvider = Provider.of<CartProvider>(context);
 
     // Build the bottom navigation bar items from the _screens list.
-    final List<BottomNavigationBarItem> _navBarItems = _screens.map((screen) {
+    final List<BottomNavigationBarItem> navBarItems = _screens.map((screen) {
       if (screen.title == 'cart') {
         // Add a badge to the cart icon to show the number of items in the cart.
         return BottomNavigationBarItem(
@@ -82,7 +82,7 @@ class _MainNavigationState extends State<MainNavigation> {
       // Show the selected screen's widget.
       body: _screens[_selectedIndex].widget,
       bottomNavigationBar: BottomNavigationBar(
-        items: _navBarItems,
+        items: navBarItems,
         currentIndex: _selectedIndex,
         onTap: _onItemTapped,
         // Set the bottom navigation bar to be fixed, so that all the items are visible.

@@ -20,7 +20,7 @@ class CategoryList extends StatelessWidget {
           final category = categories[index];
           return CategoryCard(
             title: AppLocalizations.of(context).translate(category.title),
-            icon: category.icon,
+            icon: Icons.category,
             color: category.color,
             imageUrl: category.imageUrl,
             onTap: () => _navigateToProductList(context, category),

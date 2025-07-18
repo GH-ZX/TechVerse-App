@@ -125,64 +125,64 @@ class _LoginScreenState extends State<LoginScreen>
     }
   }
 
-  // Future<void> signInWithGoogle() async {
-  //   if (isGoogleLoading) return;
-  //   setState(() => isGoogleLoading = true);
+  Future<void> signInWithGoogle() async {
+    if (isGoogleLoading) return;
+    setState(() => isGoogleLoading = true);
 
-  //   try {
-  //     final userProvider = Provider.of<UserProvider>(context, listen: false);
-  //     print('Starting Google sign-in process');
-  //     final success = await userProvider.signInWithGoogle();
-  //     print('Google sign-in result: $success');
+    try {
+      final userProvider = Provider.of<UserProvider>(context, listen: false);
+      print('Starting Google sign-in process');
+      final success = await userProvider.signInWithGoogle();
+      print('Google sign-in result: $success');
 
-  //     if (mounted) {
-  //       if (success != null) {
-  //         Navigator.of(
-  //           context,
-  //         ).pushNamedAndRemoveUntil('/home', (route) => false);
-  //       } else {
-  //         print('Google sign-in failed: ${userProvider.error}');
-  //         // Only show error if there's a specific error message
-  //         if (userProvider.error != null && userProvider.error!.isNotEmpty) {
-  //           ScaffoldMessenger.of(context).showSnackBar(
-  //             SnackBar(
-  //               content: Text(userProvider.error!),
-  //               backgroundColor: Colors.red,
-  //               behavior: SnackBarBehavior.floating,
-  //               shape: RoundedRectangleBorder(
-  //                 borderRadius: BorderRadius.circular(10),
-  //               ),
-  //               margin: const EdgeInsets.all(16),
-  //             ),
-  //           );
-  //         }
-  //       }
-  //     }
-  //   } catch (error) {
-  //     print('Google sign-in exception: $error');
-  //     if (mounted) {
-  //       ScaffoldMessenger.of(context).showSnackBar(
-  //         SnackBar(
-  //           content: Text(
-  //             AppLocalizations.of(context).translate('google_login_failed'),
-  //           ),
-  //           backgroundColor: Colors.red,
-  //           behavior: SnackBarBehavior.floating,
-  //           shape: RoundedRectangleBorder(
-  //             borderRadius: BorderRadius.circular(10),
-  //           ),
-  //           margin: const EdgeInsets.all(16),
-  //         ),
-  //       );
-  //     }
-  //   } finally {
-  //     if (mounted) {
-  //       setState(() {
-  //         isGoogleLoading = false;
-  //       });
-  //     }
-  //   }
-  // }
+      if (mounted) {
+        if (success != null) {
+          Navigator.of(
+            context,
+          ).pushNamedAndRemoveUntil('/home', (route) => false);
+        } else {
+          print('Google sign-in failed: ${userProvider.error}');
+          // Only show error if there's a specific error message
+          if (userProvider.error != null && userProvider.error!.isNotEmpty) {
+            ScaffoldMessenger.of(context).showSnackBar(
+              SnackBar(
+                content: Text(userProvider.error!),
+                backgroundColor: Colors.red,
+                behavior: SnackBarBehavior.floating,
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(10),
+                ),
+                margin: const EdgeInsets.all(16),
+              ),
+            );
+          }
+        }
+      }
+    } catch (error) {
+      print('Google sign-in exception: $error');
+      if (mounted) {
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(
+            content: Text(
+              AppLocalizations.of(context).translate('google_login_failed'),
+            ),
+            backgroundColor: Colors.red,
+            behavior: SnackBarBehavior.floating,
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(10),
+            ),
+            margin: const EdgeInsets.all(16),
+          ),
+        );
+      }
+    } finally {
+      if (mounted) {
+        setState(() {
+          isGoogleLoading = false;
+        });
+      }
+    }
+  }
 
   void toggleLanguage() {
     final languageProvider = Provider.of<LanguageProvider>(
@@ -251,7 +251,9 @@ class _LoginScreenState extends State<LoginScreen>
                             shape: RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(16),
                               side: BorderSide(
-                                color: theme.dividerColor.withOpacity(0.2),
+                                color: isDarkMode
+                                    ? Colors.white.withOpacity(0.1)
+                                    : Colors.black.withOpacity(0.05),
                               ),
                             ),
                             child: Padding(
@@ -355,29 +357,29 @@ class _LoginScreenState extends State<LoginScreen>
                           const SizedBox(height: 24),
 
                           // Google Sign In
-                          // OutlinedButton.icon(
-                          //   onPressed: isGoogleLoading ? null : signInWithGoogle,
-                          //   icon:
-                          //       isGoogleLoading
-                          //           ? SizedBox(
-                          //             height: 20,
-                          //             width: 20,
-                          //             child: CircularProgressIndicator(
-                          //               strokeWidth: 2,
-                          //               color: theme.colorScheme.primary,
-                          //             ),
-                          //           )
-                          //           : const Text("G"),
-                          //   label: Text(
-                          //     localizations.translate('sign_in_with_google'),
-                          //   ),
-                          //   style: OutlinedButton.styleFrom(
-                          //     padding: const EdgeInsets.symmetric(
-                          //       vertical: 12,
-                          //       horizontal: 24,
-                          //     ),
-                          //   ),
-                          // ),
+                          OutlinedButton.icon(
+                            onPressed: isGoogleLoading ? null : signInWithGoogle,
+                            icon:
+                                isGoogleLoading
+                                    ? SizedBox(
+                                      height: 20,
+                                      width: 20,
+                                      child: CircularProgressIndicator(
+                                        strokeWidth: 2,
+                                        color: theme.colorScheme.primary,
+                                      ),
+                                    )
+                                    : const Text("G"),
+                            label: Text(
+                              localizations.translate('sign_in_with_google'),
+                            ),
+                            style: OutlinedButton.styleFrom(
+                              padding: const EdgeInsets.symmetric(
+                                vertical: 12,
+                                horizontal: 24,
+                              ),
+                            ),
+                          ),
 
                           const SizedBox(height: 16),
 
@@ -391,8 +393,7 @@ class _LoginScreenState extends State<LoginScreen>
                                 ),
                               );
                             },
-                            child: Text(localizations.translate('register')),
-                          ),
+                            child: Text(localizations.translate('register'))),
                         ],
                       ),
                     ),

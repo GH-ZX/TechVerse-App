@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:provider/provider.dart';
+import 'package:techverse/models/product.dart';
 import 'package:techverse/services/app_localizations.dart';
 import 'package:techverse/providers/product_provider.dart';
 import 'package:techverse/providers/cart_provider.dart';

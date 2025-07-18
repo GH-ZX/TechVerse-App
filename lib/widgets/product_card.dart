@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:techverse/models/product.dart';
 import 'package:techverse/services/app_localizations.dart';
 import 'package:techverse/providers/product_provider.dart';
 import 'package:techverse/providers/favorites_provider.dart';
