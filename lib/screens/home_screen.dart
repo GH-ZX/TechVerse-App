@@ -67,10 +67,7 @@ class _HomeScreenState extends State<HomeScreen> {
                       const SizedBox(height: 24),
                       Text(
                         localizations.translate('categories'),
-                        style: Theme.of(context)
-                            .textTheme
-                            .titleLarge
-                            ?.copyWith(fontWeight: FontWeight.bold),
+                        style: Theme.of(context).textTheme.headlineMedium,
                       ),
                       const SizedBox(height: 12),
                       CategoryList(categories: categories),

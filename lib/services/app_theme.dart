@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
 
 class AppTheme {
   // Light Theme Colors
@@ -42,45 +41,44 @@ class AppTheme {
     scaffoldBackgroundColor: backgroundColor,
     cardColor: cardColor,
     dividerColor: dividerColor,
-    textTheme: GoogleFonts.cairoTextTheme(ThemeData.light().textTheme).copyWith(
-      displayLarge: GoogleFonts.cairo(
-        textStyle: const TextStyle(
-          color: textColor,
-          fontSize: 26,
-          fontWeight: FontWeight.bold,
+    textTheme: ThemeData.light().textTheme.copyWith(
+          displayLarge: const TextStyle(
+            fontFamily: 'Cairo',
+            color: textColor,
+            fontSize: 26,
+            fontWeight: FontWeight.bold,
+          ),
+          displayMedium: const TextStyle(
+            fontFamily: 'Cairo',
+            color: textColor,
+            fontSize: 22,
+            fontWeight: FontWeight.bold,
+          ),
+          displaySmall: const TextStyle(
+            fontFamily: 'Cairo',
+            color: textColor,
+            fontSize: 18,
+            fontWeight: FontWeight.bold,
+          ),
+          headlineMedium: const TextStyle(
+            fontFamily: 'Cairo',
+            color: textColor,
+            fontSize: 16,
+            fontWeight: FontWeight.bold,
+          ),
+          bodyLarge: const TextStyle(
+              fontFamily: 'Cairo', color: textColor, fontSize: 16),
+          bodyMedium: const TextStyle(
+              fontFamily: 'Cairo', color: textColor, fontSize: 14),
+          bodySmall: const TextStyle(
+              fontFamily: 'Cairo', color: secondaryTextColor, fontSize: 12),
+          titleLarge: const TextStyle(fontFamily: 'Cairo'),
+          titleMedium: const TextStyle(fontFamily: 'Cairo'),
+          titleSmall: const TextStyle(fontFamily: 'Cairo'),
+          labelLarge: const TextStyle(fontFamily: 'Cairo'),
+          labelMedium: const TextStyle(fontFamily: 'Cairo'),
+          labelSmall: const TextStyle(fontFamily: 'Cairo'),
         ),
-      ),
-      displayMedium: GoogleFonts.cairo(
-        textStyle: const TextStyle(
-          color: textColor,
-          fontSize: 22,
-          fontWeight: FontWeight.bold,
-        ),
-      ),
-      displaySmall: GoogleFonts.cairo(
-        textStyle: const TextStyle(
-          color: textColor,
-          fontSize: 18,
-          fontWeight: FontWeight.bold,
-        ),
-      ),
-      headlineMedium: GoogleFonts.cairo(
-        textStyle: const TextStyle(
-          color: textColor,
-          fontSize: 16,
-          fontWeight: FontWeight.bold,
-        ),
-      ),
-      bodyLarge: GoogleFonts.cairo(
-        textStyle: const TextStyle(color: textColor, fontSize: 16),
-      ),
-      bodyMedium: GoogleFonts.cairo(
-        textStyle: const TextStyle(color: textColor, fontSize: 14),
-      ),
-      bodySmall: GoogleFonts.cairo(
-        textStyle: const TextStyle(color: secondaryTextColor, fontSize: 12),
-      ),
-    ),
     appBarTheme: const AppBarTheme(
       backgroundColor: primaryColor,
       foregroundColor: Colors.white,
@@ -163,45 +161,46 @@ class AppTheme {
     scaffoldBackgroundColor: darkBackgroundColor,
     cardColor: darkCardColor,
     dividerColor: darkDividerColor,
-    textTheme: GoogleFonts.cairoTextTheme(ThemeData.dark().textTheme).copyWith(
-      displayLarge: GoogleFonts.cairo(
-        textStyle: const TextStyle(
-          color: darkTextColor,
-          fontSize: 26,
-          fontWeight: FontWeight.bold,
+    textTheme: ThemeData.dark().textTheme.copyWith(
+          displayLarge: const TextStyle(
+            fontFamily: 'Cairo',
+            color: darkTextColor,
+            fontSize: 26,
+            fontWeight: FontWeight.bold,
+          ),
+          displayMedium: const TextStyle(
+            fontFamily: 'Cairo',
+            color: darkTextColor,
+            fontSize: 22,
+            fontWeight: FontWeight.bold,
+          ),
+          displaySmall: const TextStyle(
+            fontFamily: 'Cairo',
+            color: darkTextColor,
+            fontSize: 18,
+            fontWeight: FontWeight.bold,
+          ),
+          headlineMedium: const TextStyle(
+            fontFamily: 'Cairo',
+            color: darkTextColor,
+            fontSize: 16,
+            fontWeight: FontWeight.bold,
+          ),
+          bodyLarge: const TextStyle(
+              fontFamily: 'Cairo', color: darkTextColor, fontSize: 16),
+          bodyMedium: const TextStyle(
+              fontFamily: 'Cairo', color: darkTextColor, fontSize: 14),
+          bodySmall: const TextStyle(
+              fontFamily: 'Cairo',
+              color: darkSecondaryTextColor,
+              fontSize: 12),
+          titleLarge: const TextStyle(fontFamily: 'Cairo'),
+          titleMedium: const TextStyle(fontFamily: 'Cairo'),
+          titleSmall: const TextStyle(fontFamily: 'Cairo'),
+          labelLarge: const TextStyle(fontFamily: 'Cairo'),
+          labelMedium: const TextStyle(fontFamily: 'Cairo'),
+          labelSmall: const TextStyle(fontFamily: 'Cairo'),
         ),
-      ),
-      displayMedium: GoogleFonts.cairo(
-        textStyle: const TextStyle(
-          color: darkTextColor,
-          fontSize: 22,
-          fontWeight: FontWeight.bold,
-        ),
-      ),
-      displaySmall: GoogleFonts.cairo(
-        textStyle: const TextStyle(
-          color: darkTextColor,
-          fontSize: 18,
-          fontWeight: FontWeight.bold,
-        ),
-      ),
-      headlineMedium: GoogleFonts.cairo(
-        textStyle: const TextStyle(
-          color: darkTextColor,
-          fontSize: 16,
-          fontWeight: FontWeight.bold,
-        ),
-      ),
-      bodyLarge: GoogleFonts.cairo(
-        textStyle: const TextStyle(color: darkTextColor, fontSize: 16),
-      ),
-      bodyMedium: GoogleFonts.cairo(
-        textStyle: const TextStyle(color: darkTextColor, fontSize: 14),
-      ),
-      bodySmall: GoogleFonts.cairo(
-        textStyle: const TextStyle(color: darkSecondaryTextColor, fontSize: 12),
-      ),
-    ),
     appBarTheme: const AppBarTheme(
       backgroundColor: darkCardColor,
       foregroundColor: darkTextColor,
