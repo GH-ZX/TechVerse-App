@@ -37,7 +37,6 @@ class _LoginScreenState extends State<LoginScreen>
       ),
     );
 
-  
     // إعداد الرسوم المتحركة
     _animationController = AnimationController(
       duration: const Duration(milliseconds: 800),
@@ -248,9 +247,10 @@ class _LoginScreenState extends State<LoginScreen>
                             shape: RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(16),
                               side: BorderSide(
-                                color: isDarkMode
-                                    ? Colors.white.withOpacity(0.1)
-                                    : Colors.black.withOpacity(0.05),
+                                color:
+                                    isDarkMode
+                                        ? Colors.white.withOpacity(0.1)
+                                        : Colors.black.withOpacity(0.05),
                               ),
                             ),
                             child: Padding(
@@ -262,7 +262,7 @@ class _LoginScreenState extends State<LoginScreen>
                                       CrossAxisAlignment.stretch,
                                   children: [
                                     Text(
-                                      'PCLand Store',
+                                      'TechVerse Store',
                                       style: theme.textTheme.headlineSmall
                                           ?.copyWith(
                                             fontWeight: FontWeight.bold,
@@ -355,7 +355,8 @@ class _LoginScreenState extends State<LoginScreen>
 
                           // Google Sign In
                           OutlinedButton.icon(
-                            onPressed: isGoogleLoading ? null : signInWithGoogle,
+                            onPressed:
+                                isGoogleLoading ? null : signInWithGoogle,
                             icon:
                                 isGoogleLoading
                                     ? SizedBox(
@@ -390,7 +391,8 @@ class _LoginScreenState extends State<LoginScreen>
                                 ),
                               );
                             },
-                            child: Text(localizations.translate('register'))),
+                            child: Text(localizations.translate('register')),
+                          ),
                         ],
                       ),
                     ),

@@ -128,8 +128,6 @@
   "create_account": "Create an account",
   "register_success": "Registration successful",
   "about_description": "TechVerse is a mobile application that provides a platform for users to browse, search, and purchase laptops and accessories. The app offers a user-friendly interface, allowing users to easily navigate through various categories, view product details, and make secure payments. With features like order tracking, favorites, and personalized recommendations, TechVerse aims to enhance the online shopping experience for tech enthusiasts.",
-  "special thanks": "Special thanks to",
-  "special thanks decription": "Midad orgnaization and 1000 programmers for their support and guidance in the development of this application. Their expertise and resources have been invaluable in bringing this project to life.",
   "track_order": "Track Order",
   "track_order_status": "Your order is currently {status}",
   "order_canceled": "Order canceled successfully",

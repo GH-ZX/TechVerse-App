@@ -285,21 +285,11 @@ class SettingsScreen extends StatelessWidget {
                                 Text(
                                   localizations.translate('about_description'),
                                 ),
-                                const SizedBox(height: 16),
-                                const Divider(),
-                                const SizedBox(height: 16),
-                                Text(
-                                  localizations.translate('special thanks'),
-                                  style: const TextStyle(
-                                    fontWeight: FontWeight.bold,
-                                  ),
-                                ),
-                                const SizedBox(height: 8),
-                                Text(
-                                  localizations.translate(
-                                    'special thanks decription',
-                                  ),
-                                ),
+                                
+                                
+                                
+                              
+                               
                               ],
                             ),
                             actions: [
@@ -360,13 +350,42 @@ class SettingsScreen extends StatelessWidget {
                                   leading: const Icon(Icons.phone),
                                   title: Text(
                                     localizations.translate(
-                                      'Abd-AlGhani Al-Omar',
+                                      'Abdullah Habbar',
                                     ),
                                   ),
-                                  subtitle: const Text('+97693553256'),
+                                  subtitle: const Text('+905313096697'),
                                   onTap: () async {
                                     Navigator.pop(ctx);
-                                    final phoneNumber = '+97693553256';
+                                    final phoneNumber = '+905313096697';
+                                    final url = 'tel:$phoneNumber';
+                                    if (!await url_launcher.launchUrl(
+                                      Uri.parse(url),
+                                    )) {
+                                      if (context.mounted) {
+                                        ScaffoldMessenger.of(
+                                          context,
+                                        ).showSnackBar(
+                                          const SnackBar(
+                                            content: Text(
+                                              'Could not launch phone dialer',
+                                            ),
+                                          ),
+                                        );
+                                      }
+                                    }
+                                  },
+                                ),
+                                 ListTile(
+                                  leading: const Icon(Icons.phone),
+                                  title: Text(
+                                    localizations.translate(
+                                      'Ahmad Sarhan',
+                                    ),
+                                  ),
+                                  subtitle: const Text('+352681568993'),
+                                  onTap: () async {
+                                    Navigator.pop(ctx);
+                                    final phoneNumber = '+352681568993';
                                     final url = 'tel:$phoneNumber';
                                     if (!await url_launcher.launchUrl(
                                       Uri.parse(url),
@@ -386,6 +405,9 @@ class SettingsScreen extends StatelessWidget {
                                   },
                                 ),
                               ],
+                              
+
+                              
                             ),
                             actions: [
                               TextButton(

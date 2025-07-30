@@ -3,25 +3,25 @@ import 'package:google_fonts/google_fonts.dart';
 
 class AppTheme {
   // Light Theme Colors
-  static const Color primaryColor = Color(0xFF0D47A1);
-  static const Color secondaryColor = Color(0xFF1976D2);
-  static const Color accentColor = Color(0xFF42A5F5);
-  static const Color backgroundColor = Color(0xFFF5F5F5);
-  static const Color cardColor = Colors.white;
-  static const Color textColor = Color(0xFF212121);
-  static const Color secondaryTextColor = Color(0xFF757575);
+  static const Color primaryColor = Color(0xFF748CAB);
+  static const Color secondaryColor = Color(0xFF3E5C76);
+  static const Color accentColor = Color(0xFF1D2D44);
+  static const Color backgroundColor = Color(0xFFF0EBD8);
+  static const Color cardColor = Color.fromARGB(255, 245, 240, 223);
+  static const Color textColor = Color(0xFF0D1321);
+  static const Color secondaryTextColor = Color(0xFF1D2D44);
   static const Color dividerColor = Color(0xFFBDBDBD);
 
   // Dark Theme Colors
-  static const Color darkPrimaryColor = Color(0xFF1976D2);
-  static const Color darkAccentColor = Color(0xFF64B5F6);
-  static const Color darkBackgroundColor = Color(0xFF1E1E1E);
-  static const Color darkCardColor = Color(0xFF2C2C2C);
-  static const Color darkSurfaceColor = Color(0xFF323232);
-  static const Color darkTextColor = Color(0xFFF5F5F5);
-  static const Color darkSecondaryTextColor = Color(0xFFBDBDBD);
-  static const Color darkDividerColor = Color(0xFF525252);
-  static const Color darkElevatedColor = Color(0xFF383838);
+  static const Color darkPrimaryColor = Color(0xFF748CAB);
+  static const Color darkAccentColor = Color(0xFFA8B5C1);
+  static const Color darkBackgroundColor = Color(0xFF0D1321);
+  static const Color darkCardColor = Color(0xFF1D2D44);
+  static const Color darkSurfaceColor = Color(0xFF1D2D44);
+  static const Color darkTextColor = Color(0xFFF0EBD8);
+  static const Color darkSecondaryTextColor = Color(0xFF748CAB);
+  static const Color darkDividerColor = Color(0xFF3E5C76);
+  static const Color darkElevatedColor = Color(0xFF2a3f58);
 
   // Status Colors
   static const Color errorColor = Color(0xFFD32F2F);
@@ -155,7 +155,7 @@ class AppTheme {
     primaryColor: darkPrimaryColor,
     colorScheme: ColorScheme.dark(
       primary: darkPrimaryColor,
-      secondary: secondaryColor,
+      secondary: darkAccentColor,
       error: errorColor,
       surface: darkSurfaceColor,
       onSurface: darkTextColor,
@@ -203,14 +203,14 @@ class AppTheme {
       ),
     ),
     appBarTheme: const AppBarTheme(
-      backgroundColor: darkSurfaceColor,
+      backgroundColor: darkCardColor,
       foregroundColor: darkTextColor,
       elevation: 0,
     ),
     elevatedButtonTheme: ElevatedButtonThemeData(
       style: ElevatedButton.styleFrom(
         backgroundColor: darkPrimaryColor,
-        foregroundColor: Colors.white,
+        foregroundColor: darkBackgroundColor,
         elevation: 0,
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
         padding: const EdgeInsets.symmetric(vertical: 12, horizontal: 16),
@@ -263,8 +263,8 @@ class AppTheme {
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
     ),
     bottomNavigationBarTheme: const BottomNavigationBarThemeData(
-      backgroundColor: darkSurfaceColor,
-      selectedItemColor: darkAccentColor,
+      backgroundColor: darkCardColor,
+      selectedItemColor: darkPrimaryColor,
       unselectedItemColor: darkSecondaryTextColor,
       type: BottomNavigationBarType.fixed,
       elevation: 8,
