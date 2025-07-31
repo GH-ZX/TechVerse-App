@@ -1149,10 +1149,10 @@
     "category": "Mice",
     "price": 99.99,
     "oldPrice": 109.99,
-    "imageUrl": "accessories/corsair/dark_core_rgb_pro_se_mouse_main.png",
+    "imageUrl": "accessories/corsair/dark_core_rgb_pro_se_mouse_main.webp",
     "images": [
-      "accessories/corsair/dark_core_rgb_pro_se_mouse_side.png",
-      "accessories/corsair/dark_core_rgb_pro_se_mouse_back.png"
+      "accessories/corsair/dark_core_rgb_pro_se_mouse_side.webp",
+      "accessories/corsair/dark_core_rgb_pro_se_mouse_back.webp"
     ],
     "description": "Corsair Dark Core RGB Pro SE Wireless Gaming Mouse with Slipstream Wireless and Qi wireless charging.",
     "descriptionAr": "ماوس كورسير Dark Core RGB Pro SE اللاسلكي للألعاب بتقنية Slipstream اللاسلكية والشحن اللاسلكي Qi.",
